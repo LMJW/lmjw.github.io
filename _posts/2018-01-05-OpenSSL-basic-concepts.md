@@ -10,7 +10,7 @@ date: 2018-01-05
 
 ## Artical summary(without Certificate revocation lists)
 The following graph summarizes the relationship between different keys and certificates.
-![Open ssl keys relationships](../image/openssl_key_diagram.png)
+![Open ssl keys relationships](/image/openssl_key_diagram.png)
 
 ## Certificate authority
 
