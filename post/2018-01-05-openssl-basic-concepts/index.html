@@ -1,0 +1,412 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=HandheldFriendly content="True">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=generator content="Hugo 0.89.1">
+<link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/images/favicons/dsrca.ico>
+<title>A explanation of Open ssl certification - LMJW Blog</title>
+<meta name=author content="LMJW">
+<meta name=description content="A minimal Hugo theme with nice theme color.">
+<meta name=keywords content="openssl">
+<meta property="og:title" content="A explanation of Open ssl certification">
+<meta name=twitter:title content="A explanation of Open ssl certification">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lmjw.github.io/post/2018-01-05-openssl-basic-concepts/"><meta property="og:description" content="Open SSL certificate authority Statement: This is just a study notes in order to understand the Open SSL and some relating concepts. A lot of contents in this article are copied from Jamie Nguyen&rsquo;s blog OpenSSL Certificate Authority
+Article summary(without Certificate revocation lists) The following graph summarizes the relationship between different keys and certificates. Certificate authority  A certificate authority (CA) is an entity that signs digital certificates. Many websites need to let their customers know that the connection is secure, so they pay an internationally trusted CA (eg, VeriSign, DigiCert) to sign a certificate for their domain.
+In some cases it may make more sense to act as your own CA, rather than paying a CA like DigiCert.">
+<meta name=twitter:description content="Open SSL certificate authority Statement: This is just a study notes in order to understand the Open SSL and some relating concepts. A lot of contents in this article are copied from Jamie Nguyen&rsquo;s blog OpenSSL Certificate Authority
+Article summary(without Certificate revocation lists) The following graph summarizes the relationship between different keys and certificates. Certificate authority  A certificate authority (CA) is an entity that signs digital certificates. Many websites need to let their customers know that the connection is secure, so they pay an internationally trusted CA (eg, VeriSign, DigiCert) to sign a certificate for their domain.
+In some cases it may make more sense to act as your own CA, rather than paying a CA like DigiCert."><meta property="og:image" content="https://lmjw.github.io/img/og.png">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="article:published_time" content="2018-01-05T00:00:00+00:00"><meta property="article:modified_time" content="2018-01-05T00:00:00+00:00">
+<style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style>
+<link rel=stylesheet href=https://lmjw.github.io/assets/css/fuji.min.css>
+</head>
+<body data-theme=auto data-theme-auto=true>
+<script data-cfasync=false>var fujiThemeData=localStorage.getItem('fuji_data-theme');fujiThemeData?fujiThemeData!=='auto'&&document.body.setAttribute('data-theme',fujiThemeData==='dark'?'dark':'light'):localStorage.setItem('fuji_data-theme','auto')</script>
+<header>
+<div class="container-lg clearfix">
+<div class="col-12 header">
+<a class=title-main href=https://lmjw.github.io/>LMJW Blog</a>
+<span class=title-sub>My notes.</span>
+</div>
+</div>
+</header>
+<main>
+<div class="container-lg clearfix">
+<div class="col-12 col-md-9 float-left content">
+<article>
+<h2 class="post-item post-title">
+<a href=https://lmjw.github.io/post/2018-01-05-openssl-basic-concepts/>A explanation of Open ssl certification</a>
+</h2>
+<div class="post-item post-meta">
+<span><i class="iconfont icon-today-sharp"></i>&nbsp;2018-01-05</span>
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;772 words</span>
+<span><i class="iconfont icon-time-sharp"></i>&nbsp;4 minutes</span>
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/openssl>openssl</a>&nbsp;</span>
+</div>
+<div class="post-content markdown-body">
+<h1 id=open-ssl-certificate-authority>Open SSL certificate authority</h1>
+<p><strong>Statement</strong>: This is just a study notes in order to understand the Open SSL and some relating concepts. A lot of contents in this article are copied from <a href=https://jamielinux.com/ target=_blank>Jamie Nguyen</a>&rsquo;s blog <a href=https://jamielinux.com/docs/openssl-certificate-authority/index.html# target=_blank>OpenSSL Certificate Authority</a></p>
+<h2 id=article-summarywithout-certificate-revocation-lists>Article summary(without Certificate revocation lists)</h2>
+<p>The following graph summarizes the relationship between different keys and certificates.
+<img class=img-zoomable src=/image/openssl_key_diagram.png alt="Open ssl keys relationships">
+</p>
+<h2 id=certificate-authority>Certificate authority</h2>
+<blockquote>
+<p>A certificate authority (CA) is an entity that signs digital certificates. Many websites need to let their customers know that the connection is secure, so they pay an internationally trusted CA (eg, VeriSign, DigiCert) to sign a certificate for their domain.</p>
+<p>In some cases it may make more sense to act as your own CA, rather than paying a CA like DigiCert. Common cases include securing an intranet website, or for issuing certificates to clients to allow them to authenticate to a server (eg, Apache, OpenVPN).</p>
+</blockquote>
+<h3 id=ca-root-keypair>CA-ROOT-keypair</h3>
+<ul>
+<li>root key (ca.key.pem)[<strong>private</strong>]</li>
+<li>root certificate (ca.csrt.pem)[<strong>Public</strong>]</li>
+</ul>
+<blockquote>
+<p>Typically, the root CA does not sign server or client certificates directly. The
+root CA is only ever used to create one or more intermediate CAs, which are
+trusted by the root CA to sign certificates on their behalf.</p>
+</blockquote>
+<p>root key can be used to create a root certificate.</p>
+<blockquote>
+<p>Use the root key (<code>ca.key.pem</code>) to create a root certificate (<code>ca.cert.pem</code>).
+Give the root certificate a long expiry date, such as twenty years. Once the
+root certificate expires, all certificates signed by the CA become invalid.</p>
+</blockquote>
+<h3 id=intermediate-ca>Intermediate CA</h3>
+<blockquote>
+<p>An intermediate certificate authority (CA) is an entity that can sign certificates on behalf of the root CA. The root CA signs the intermediate certificate, forming a chain of trust.</p>
+<p>The purpose of using an intermediate CA is primarily for security. The root key can be kept offline and used as infrequently as possible. If the intermediate key is compromised, the root CA can revoke the intermediate certificate and create a new intermediate cryptographic pair.</p>
+</blockquote>
+<ul>
+<li>
+<p>Create an intermediate key [<strong>private</strong>]</p>
+</li>
+<li>
+<p>use the intermediate key to create a certificate signing request (CSR)</p>
+</li>
+<li>
+<p>Create the intermediate certificate(<em>cert, crt</em>) (using the <strong>root key?</strong>)</p>
+<ul>
+<li>Input: .csr</li>
+<li>output: .crt(.cert)</li>
+</ul>
+</li>
+<li>
+<p>Create the certification chain file</p>
+<ul>
+<li>
+<blockquote>
+<p>When an application (eg, a web browser) tries to verify a certificate signed by the intermediate CA, it must also verify the intermediate certificate against the root certificate. To complete the chain of trust, create a CA certificate chain to present to the application.</p>
+<p>To create the CA certificate chain, concatenate the intermediate and root certificates together. We will use this file later to verify certificates signed by the intermediate CA.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=sign-server-and-client-using-intermediate-ca>Sign server and client using intermediate CA</h3>
+<blockquote>
+<p>We will be signing certificates using our intermediate CA. You can use these
+signed certificates in a variety of situations, such as to secure connections to
+a web server or to authenticate clients connecting to a service.</p>
+</blockquote>
+<ul>
+<li>
+<p>Create private key for server and client</p>
+<ul>
+<li>
+<blockquote>
+<p>Our root and intermediate pairs are 4096 bits. Server and client certificates
+normally expire after one year, so we can safely use 2048 bits instead.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Use the private key to create a certificate signing request (CSR)</p>
+<ul>
+<li>
+<blockquote>
+<p>The CSR details don’t need to match the intermediate CA. For server certificates, the
+<strong>Common Name</strong> must be a fully qualified domain name (eg, <code>www.example.com</code>),
+whereas for client certificates it can be any unique identifier (eg, an e-mail
+address). Note that the <strong>Common Name</strong> cannot be the same as either your root
+or intermediate certificate.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Sign the .csr file</p>
+<ul>
+<li>
+<blockquote>
+<p>To create a certificate, use the intermediate CA to sign the CSR. If the
+certificate is going to be used on a server, use the <code>server_cert</code> extension.
+If the certificate is going to be used for user authentication, use the
+<code>usr_cert</code> extension. Certificates are usually given a validity of one year,
+though a CA will typically give a few days extra for convenience.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Deploy the certificate</p>
+<ul>
+<li>
+<blockquote>
+<p>You can now either deploy your new certificate to a server, or distribute the certificate to a client. When deploying to a server application (eg, Apache),you need to make the following files available:</p>
+<ul>
+<li><code>ca-chain.cert.pem</code></li>
+<li><code>www.example.com.key.pem</code></li>
+<li><code>www.example.com.cert.pem</code></li>
+</ul>
+<p>If you’re signing a CSR from a third-party, you don’t have access to their private key so you only need to give them back the chain file(<code>ca-chain.cert.pem</code>) and the certificate (<code>www.example.com.cert.pem</code>)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=certificate-revocation-list-crl>Certificate revocation list (CRL)</h3>
+<blockquote>
+<p>A certificate revocation list (CRL) provides a list of certificates that have
+been revoked. A client application, such as a web browser, can use a CRL to
+check a server’s authenticity. A server application, such as Apache or OpenVPN,
+can use a CRL to deny access to clients that are no longer trusted.</p>
+</blockquote>
+<p>I will stop here just because I do not need this bit for now. Will come back later if needed.</p>
+</div>
+</article>
+<div class="license markdown-body">
+<blockquote>
+<p>Unless otherwise noted, the content of this site is licensed under <a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a>.</p>
+</blockquote>
+</div>
+</div>
+<aside class="col-12 col-md-3 float-left sidebar">
+<div class="sidebar-item sidebar-pages">
+<h3>Pages</h3>
+<ul>
+<li>
+<a href=/>Home</a>
+</li>
+<li>
+<a href=/archives/>Archives</a>
+</li>
+<li>
+<a href=/search/>Search</a>
+</li>
+</ul>
+</div>
+<div class="sidebar-item sidebar-links">
+<h3>Links</h3>
+<ul>
+<li>
+<a href=https://github.com/LMJW target=_blank><span>GitHub</span></a>
+</li>
+</ul>
+</div>
+<div class="sidebar-item sidebar-tags">
+<h3>Tags</h3>
+<div>
+<span>
+<a href=/tags/bash/>bash</a>
+</span>
+<span>
+<a href=/tags/cli/>CLI</a>
+</span>
+<span>
+<a href=/tags/cpp/>cpp</a>
+</span>
+<span>
+<a href=/tags/deep-learning/>deep-learning</a>
+</span>
+<span>
+<a href=/tags/docker/>docker</a>
+</span>
+<span>
+<a href=/tags/gmp/>GMP</a>
+</span>
+<span>
+<a href=/tags/golang/>golang</a>
+</span>
+<span>
+<a href=/tags/grpc/>grpc</a>
+</span>
+<span>
+<a href=/tags/kernel/>kernel</a>
+</span>
+<span>
+<a href=/tags/kubernetes/>Kubernetes</a>
+</span>
+<span>
+<a href=/tags/markdown-cheatsheet/>Markdown CheatSheet</a>
+</span>
+<span>
+<a href=/tags/network/>network</a>
+</span>
+<span>
+<a href=/tags/openssl/>openssl</a>
+</span>
+<span>
+<a href=/tags/os/>OS</a>
+</span>
+<span>
+<a href=/tags/python/>python</a>
+</span>
+<span>
+<a href=/tags/subprocess/>subprocess</a>
+</span>
+<span>
+<a href=/tags/tools/>Tools</a>
+</span>
+</div>
+</div>
+<div class="sidebar-item sidebar-toc">
+<h3>Table of Contents</h3><nav id=TableOfContents>
+<ul>
+<li><a href=#article-summarywithout-certificate-revocation-lists>Article summary(without Certificate revocation lists)</a></li>
+<li><a href=#certificate-authority>Certificate authority</a>
+<ul>
+<li><a href=#ca-root-keypair>CA-ROOT-keypair</a></li>
+<li><a href=#intermediate-ca>Intermediate CA</a></li>
+<li><a href=#sign-server-and-client-using-intermediate-ca>Sign server and client using intermediate CA</a></li>
+<li><a href=#certificate-revocation-list-crl>Certificate revocation list (CRL)</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</aside>
+</div>
+<div class=btn>
+<div class=btn-menu id=btn-menu>
+<i class="iconfont icon-grid-sharp"></i>
+</div>
+<div class=btn-toggle-mode>
+<i class="iconfont icon-contrast-sharp"></i>
+</div>
+<div class=btn-scroll-top>
+<i class="iconfont icon-chevron-up-circle-sharp"></i>
+</div>
+</div>
+<aside class=sidebar-mobile style=display:none>
+<div class=sidebar-wrapper>
+<div class="sidebar-item sidebar-pages">
+<h3>Pages</h3>
+<ul>
+<li>
+<a href=/>Home</a>
+</li>
+<li>
+<a href=/archives/>Archives</a>
+</li>
+<li>
+<a href=/search/>Search</a>
+</li>
+</ul>
+</div>
+<div class="sidebar-item sidebar-links">
+<h3>Links</h3>
+<ul>
+<li>
+<a href=https://github.com/LMJW target=_blank><span>GitHub</span></a>
+</li>
+</ul>
+</div>
+<div class="sidebar-item sidebar-tags">
+<h3>Tags</h3>
+<div>
+<span>
+<a href=/tags/bash/>bash</a>
+</span>
+<span>
+<a href=/tags/cli/>CLI</a>
+</span>
+<span>
+<a href=/tags/cpp/>cpp</a>
+</span>
+<span>
+<a href=/tags/deep-learning/>deep-learning</a>
+</span>
+<span>
+<a href=/tags/docker/>docker</a>
+</span>
+<span>
+<a href=/tags/gmp/>GMP</a>
+</span>
+<span>
+<a href=/tags/golang/>golang</a>
+</span>
+<span>
+<a href=/tags/grpc/>grpc</a>
+</span>
+<span>
+<a href=/tags/kernel/>kernel</a>
+</span>
+<span>
+<a href=/tags/kubernetes/>Kubernetes</a>
+</span>
+<span>
+<a href=/tags/markdown-cheatsheet/>Markdown CheatSheet</a>
+</span>
+<span>
+<a href=/tags/network/>network</a>
+</span>
+<span>
+<a href=/tags/openssl/>openssl</a>
+</span>
+<span>
+<a href=/tags/os/>OS</a>
+</span>
+<span>
+<a href=/tags/python/>python</a>
+</span>
+<span>
+<a href=/tags/subprocess/>subprocess</a>
+</span>
+<span>
+<a href=/tags/tools/>Tools</a>
+</span>
+</div>
+</div>
+<div class="sidebar-item sidebar-toc">
+<h3>Table of Contents</h3>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#article-summarywithout-certificate-revocation-lists>Article summary(without Certificate revocation lists)</a></li>
+<li><a href=#certificate-authority>Certificate authority</a>
+<ul>
+<li><a href=#ca-root-keypair>CA-ROOT-keypair</a></li>
+<li><a href=#intermediate-ca>Intermediate CA</a></li>
+<li><a href=#sign-server-and-client-using-intermediate-ca>Sign server and client using intermediate CA</a></li>
+<li><a href=#certificate-revocation-list-crl>Certificate revocation list (CRL)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</aside>
+</main>
+<footer>
+<div class="container-lg clearfix">
+<div class="col-12 footer">
+<span>&copy; 2020-2021
+<a href=https://lmjw.github.io/>LMJW</a>
+| <a href=https://github.com/LMJW/lmjw.github.io>Source code</a>
+| Powered by <a href=https://github.com/dsrkafuu/hugo-theme-fuji/ target=_blank>Fuji-v2</a> & <a href=https://gohugo.io/ target=_blank>Hugo</a>
+</span>
+</div>
+</div>
+</footer>
+<script defer src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js></script>
+<script defer src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script>
+<script defer src=https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js></script>
+<script defer src=https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js></script>
+<script defer src=/assets/js/fuji.min.js></script>
+</body>
+</html>

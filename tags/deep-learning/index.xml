@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>deep-learning on LMJW Blog</title><link>https://lmjw.github.io/tags/deep-learning/</link><description>Recent content in deep-learning on LMJW Blog</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 12 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lmjw.github.io/tags/deep-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>Intro to deep learning notes</title><link>https://lmjw.github.io/post/2019-06-12-intro-to-deep-learning-notes/</link><pubDate>Wed, 12 Jun 2019 00:00:00 +0000</pubDate><guid>https://lmjw.github.io/post/2019-06-12-intro-to-deep-learning-notes/</guid><description>This is a note for MIT 6.S191 course
+link
+course 1. Intro to deep learning The Perceptron: Forward Propagation
+Single layer neural network with tensorflow:
+from tf.keras.layers import * inputs = Inputs(m) hidden = Dense(d1)(inputs) outputs = Dense(d2)(hidden) model = Model(inputs, outputs) This four lines of code computes the single layer NN.
+Deep Neural Network
+More hidden layers
+Applying Neural Networks
+Quantifying Loss
+Compare Predicted loss vs actual loss
+Minimize loss
+Different loss functions
+Binary cross entropy loss loss = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits( model.y, model.pred )) Mean squared error loss loss = tf.</description></item></channel></rss>
