@@ -25,3 +25,7 @@ hugo server -D
 ## Blog settings
 
 The setting of this blog were modified from the `exampleSite` comes with the "fuji" theme.
+
+## Workflow setup
+
+Follow this [guide](https://github.com/marketplace/actions/hugo-setup) to setup the workflow to deploy the hugo static site.
