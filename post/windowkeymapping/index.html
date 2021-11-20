@@ -8,16 +8,25 @@
 <meta http-equiv=cache-control content="no-siteapp">
 <meta name=generator content="Hugo 0.89.4">
 <link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/images/favicons/dsrca.ico>
-<title>golang - LMJW Blog</title>
+<title>Painless key mapping on windows - LMJW Blog</title>
 <meta name=author content="LMJW">
 <meta name=description content="A minimal Hugo theme with nice theme color.">
-<link rel=alternate type=application/rss+xml href=https://lmjw.github.io/tags/golang/index.xml title="LMJW Blog">
-<meta property="og:title" content="golang">
-<meta name=twitter:title content="golang">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://lmjw.github.io/tags/golang/"><meta property="og:image" content="https://lmjw.github.io/img/og.png">
+<meta name=keywords content="tool,key-mapping">
+<meta property="og:title" content="Painless key mapping on windows">
+<meta name=twitter:title content="Painless key mapping on windows">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lmjw.github.io/post/windowkeymapping/"><meta property="og:description" content="Recently, I start to using windows for my personal project. One thing I hate about is the keyboard mappings.
+I want to basically do the following mappings
+ 1 Caps lock key -> Left Ctrl key 2 Left Alt key -> Left Ctrl key 3 Left Windows key -> Left Alt key
+ I was using the . The first two key mapping works fine, however, the third mapping has the problem. For example, &ldquo;Win+W&rdquo; should suppose to map to &ldquo;Alt+W&rdquo; which corresponding to the &ldquo;Copy&rdquo; in emacs, however, it opens the &ldquo;Pen&rdquo; app in the Windows.
+I did some research, and found another tool, which called the AutoHotKey.">
+<meta name=twitter:description content="Recently, I start to using windows for my personal project. One thing I hate about is the keyboard mappings.
+I want to basically do the following mappings
+ 1 Caps lock key -> Left Ctrl key 2 Left Alt key -> Left Ctrl key 3 Left Windows key -> Left Alt key
+ I was using the . The first two key mapping works fine, however, the third mapping has the problem. For example, &ldquo;Win+W&rdquo; should suppose to map to &ldquo;Alt+W&rdquo; which corresponding to the &ldquo;Copy&rdquo; in emacs, however, it opens the &ldquo;Pen&rdquo; app in the Windows.
+I did some research, and found another tool, which called the AutoHotKey."><meta property="og:image" content="https://lmjw.github.io/img/og.png">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="og:updated_time" content="2017-11-26T00:00:00+00:00">
+<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="article:published_time" content="2021-11-20T00:00:00+00:00"><meta property="article:modified_time" content="2021-11-20T00:00:00+00:00">
 <style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style>
 <link rel=stylesheet href=https://lmjw.github.io/assets/css/fuji.min.css>
 </head>
@@ -34,23 +43,39 @@
 <main>
 <div class="container-lg clearfix">
 <div class="col-12 col-md-9 float-left content">
-<div class=page-info>
-<span>Posts with the tag golang: </span>
-</div>
-<div class=post>
+<article>
 <h2 class="post-item post-title">
-<a href=https://lmjw.github.io/post/2017-11-26-blog-docker-python-golang/>An experiment using golang and python to execute command in docker</a>
+<a href=https://lmjw.github.io/post/windowkeymapping/>Painless key mapping on windows</a>
 </h2>
 <div class="post-item post-meta">
-<span><i class="iconfont icon-today-sharp"></i>&nbsp;2017-11-26</span>
-<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;838 words</span>
-<span><i class="iconfont icon-time-sharp"></i>&nbsp;4 minutes</span>
-<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/golang>golang</a>&nbsp;<a href=/tags/python>python</a>&nbsp;<a href=/tags/docker>docker</a>&nbsp;<a href=/tags/subprocess>subprocess</a>&nbsp;<a href=/tags/bash>bash</a>&nbsp;</span>
+<span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-11-20</span>
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;168 words</span>
+<span><i class="iconfont icon-time-sharp"></i>&nbsp;1 minute</span>
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/tool>tool</a>&nbsp;<a href=/tags/key-mapping>key-mapping</a>&nbsp;</span>
 </div>
-<div class="post-item post-summary markdown-body">
-<h4 id=description>Description:</h4>
-<p>Using golang to execute python code, which can in turn execute docker command to control docker container.</p>
+<div class="post-content markdown-body">
+<p>Recently, I start to using windows for my personal project. One thing I hate about is the keyboard mappings.</p>
+<p>I want to basically do the following mappings</p>
+<blockquote>
+<p>1 Caps lock key -> Left Ctrl key
+2 Left Alt key -> Left Ctrl key
+3 Left Windows key -> Left Alt key</p>
+</blockquote>
+<p>I was using the . The first two key mapping works fine, however, the third mapping has the problem. For example, &ldquo;Win+W&rdquo; should suppose to map to &ldquo;Alt+W&rdquo; which corresponding to the &ldquo;Copy&rdquo; in emacs, however, it opens the &ldquo;Pen&rdquo; app in the Windows.</p>
+<p>I did some research, and found another tool, which called the <a href=https://www.autohotkey.com/ target=_blank>AutoHotKey</a>. Although this tool is quite nice to do some specific customizations, it is not good for my perticular use cases. By looking through the guide on <a href=https://www.autohotkey.com/docs/misc/Remap.htm#registry target=_blank>https://www.autohotkey.com/docs/misc/Remap.htm#registry</a>, it points out to a different application, which is called <a href=https://www.bleepingcomputer.com/download/keytweak/ target=_blank>KeyTweak</a>.</p>
+<p>By using the KeyTweak, I was able to map the &ldquo;Win&rdquo; key to &ldquo;Alt&rdquo; key without having any issues.</p>
+<hr>
+<h3 id=useful-infos>Useful infos</h3>
+<ul>
+<li><a href=https://superuser.com/questions/1147517/how-to-disable-only-some-windows-10-global-shortuts-to-use-them-in-third-party-a target=_blank>https://superuser.com/questions/1147517/how-to-disable-only-some-windows-10-global-shortuts-to-use-them-in-third-party-a</a></li>
+<li><a href=https://www.autohotkey.com/docs/misc/Remap.htm#registry target=_blank>https://www.autohotkey.com/docs/misc/Remap.htm#registry</a></li>
+</ul>
 </div>
+</article>
+<div class="license markdown-body">
+<blockquote>
+<p>Unless otherwise noted, the content of this site is licensed under <a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a>.</p>
+</blockquote>
 </div>
 </div>
 <aside class="col-12 col-md-3 float-left sidebar">
@@ -138,6 +163,16 @@
 </span>
 </div>
 </div>
+<div class="sidebar-item sidebar-toc">
+<h3>Table of Contents</h3><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#useful-infos>Useful infos</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
 </aside>
 </div>
 <div class=btn>
@@ -236,6 +271,18 @@
 <a href=/tags/tools/>Tools</a>
 </span>
 </div>
+</div>
+<div class="sidebar-item sidebar-toc">
+<h3>Table of Contents</h3>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#useful-infos>Useful infos</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </div>
 </div>
 </aside>

@@ -6,7 +6,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta http-equiv=cache-control content="no-transform">
 <meta http-equiv=cache-control content="no-siteapp">
-<meta name=generator content="Hugo 0.89.1">
+<meta name=generator content="Hugo 0.89.4">
 <link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/images/favicons/dsrca.ico>
 <title>LMJW Blog - My notes.</title>
 <meta name=author content="LMJW">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lmjw.github.io/"><meta property="og:image" content="https://lmjw.github.io/img/og.png">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="og:updated_time" content="2021-05-17T00:00:00+00:00">
+<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="og:updated_time" content="2021-11-20T00:00:00+00:00">
 <style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style>
 <link rel=stylesheet href=https://lmjw.github.io/assets/css/fuji.min.css>
 </head>
@@ -34,6 +34,24 @@
 <main>
 <div class="container-lg clearfix">
 <div class="col-12 col-md-9 float-left content">
+<div class=post>
+<h2 class="post-item post-title">
+<a href=https://lmjw.github.io/post/windowkeymapping/>Painless key mapping on windows</a>
+</h2>
+<div class="post-item post-meta">
+<span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-11-20</span>
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;168 words</span>
+<span><i class="iconfont icon-time-sharp"></i>&nbsp;1 minute</span>
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/tool>tool</a>&nbsp;<a href=/tags/key-mapping>key-mapping</a>&nbsp;</span>
+</div>
+<div class="post-item post-summary markdown-body">
+Recently, I start to using windows for my personal project. One thing I hate about is the keyboard mappings.
+I want to basically do the following mappings
+1 Caps lock key -> Left Ctrl key 2 Left Alt key -> Left Ctrl key 3 Left Windows key -> Left Alt key
+I was using the . The first two key mapping works fine, however, the third mapping has the problem. For example, &ldquo;Win+W&rdquo; should suppose to map to &ldquo;Alt+W&rdquo; which corresponding to the &ldquo;Copy&rdquo; in emacs, however, it opens the &ldquo;Pen&rdquo; app in the Windows.
+I did some research, and found another tool, which called the AutoHotKey.
+</div>
+</div>
 <div class=post>
 <h2 class="post-item post-title">
 <a href=https://lmjw.github.io/post/2021-05-17-notes-about-learning-os-dev/>Learning OS dev notes</a>
@@ -201,21 +219,6 @@ Environment settings OS Windows 10 home python Anaconda, python 3.6.3 Main funct
 >>> import subprocess as sb >>> bash_exec = "C:\\Program Files\\Git\\bin\\bash.exe" >>> sb.run([bash_exe, '-c','pwd'], stdout=sb.PIPE) CompletedProcess(args=[&lsquo;C:\Program Files\Git\bin\bash.
 </div>
 </div>
-<div class=post>
-<h2 class="post-item post-title">
-<a href=https://lmjw.github.io/post/2017-11-26-blog-docker-python-golang/>An experiment using golang and python to execute command in docker</a>
-</h2>
-<div class="post-item post-meta">
-<span><i class="iconfont icon-today-sharp"></i>&nbsp;2017-11-26</span>
-<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;838 words</span>
-<span><i class="iconfont icon-time-sharp"></i>&nbsp;4 minutes</span>
-<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/golang>golang</a>&nbsp;<a href=/tags/python>python</a>&nbsp;<a href=/tags/docker>docker</a>&nbsp;<a href=/tags/subprocess>subprocess</a>&nbsp;<a href=/tags/bash>bash</a>&nbsp;</span>
-</div>
-<div class="post-item post-summary markdown-body">
-<h4 id=description>Description:</h4>
-<p>Using golang to execute python code, which can in turn execute docker command to control docker container.</p>
-</div>
-</div>
 <div class=pagination><div class="pag-item pag-current">
 <a href=/>1</a>
 </div><div class=pag-item>
@@ -280,6 +283,9 @@ Environment settings OS Windows 10 home python Anaconda, python 3.6.3 Main funct
 <a href=/tags/kernel/>kernel</a>
 </span>
 <span>
+<a href=/tags/key-mapping/>key-mapping</a>
+</span>
+<span>
 <a href=/tags/kubernetes/>Kubernetes</a>
 </span>
 <span>
@@ -299,6 +305,9 @@ Environment settings OS Windows 10 home python Anaconda, python 3.6.3 Main funct
 </span>
 <span>
 <a href=/tags/subprocess/>subprocess</a>
+</span>
+<span>
+<a href=/tags/tool/>tool</a>
 </span>
 <span>
 <a href=/tags/tools/>Tools</a>
@@ -373,6 +382,9 @@ Environment settings OS Windows 10 home python Anaconda, python 3.6.3 Main funct
 <a href=/tags/kernel/>kernel</a>
 </span>
 <span>
+<a href=/tags/key-mapping/>key-mapping</a>
+</span>
+<span>
 <a href=/tags/kubernetes/>Kubernetes</a>
 </span>
 <span>
@@ -392,6 +404,9 @@ Environment settings OS Windows 10 home python Anaconda, python 3.6.3 Main funct
 </span>
 <span>
 <a href=/tags/subprocess/>subprocess</a>
+</span>
+<span>
+<a href=/tags/tool/>tool</a>
 </span>
 <span>
 <a href=/tags/tools/>Tools</a>
