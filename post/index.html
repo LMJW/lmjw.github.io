@@ -36,18 +36,20 @@
 <div class="col-12 col-md-9 float-left content">
 <div class=post>
 <h2 class="post-item post-title">
-<a href=https://lmjw.github.io/post/tonicbuild/>A nice way to setup tonic repo</a>
+<a href=https://lmjw.github.io/post/simple-rust-protobuf-grpc-guide/>Simple prost use guid</a>
 </h2>
 <div class="post-item post-meta">
 <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-28</span>
-<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;67 words</span>
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;117 words</span>
 <span><i class="iconfont icon-time-sharp"></i>&nbsp;1 minute</span>
-<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/rust>rust</a>&nbsp;<a href=/tags/tonic>tonic</a>&nbsp;<a href=/tags/build>build</a>&nbsp;</span>
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/rust>rust</a>&nbsp;<a href=/tags/tonic>tonic</a>&nbsp;<a href=/tags/prost>prost</a>&nbsp;<a href=/tags/protobuf>protobuf</a>&nbsp;<a href=/tags/build>build</a>&nbsp;</span>
 </div>
 <div class="post-item post-summary markdown-body">
-A nice way to setup tonic repo Using gRPC usually requires both client & server to have same protobuf definition. Client and server usually are not defined in the same repository.
+Simple tonic/prost example A simple tonic repo setup Using gRPC usually requires both client & server to have same protobuf definition. Client and server usually are not defined in the same repository.
 We can use a separate git repository to store the protobuf definition, and using the git submodule to include the protobuf definition in the corresponding client and server.
 Check sample repo to see how to setup
+A simple prost example Sometime you only want to use protobuf to do serializing and deserializing the message, nothing else. In this case, you will need to use prost only.
+Here is a simplest example of how to do that.
 </div>
 </div>
 <div class=post>
@@ -304,6 +306,12 @@ Kubernetes cluster structure Master ( act as a manager): coordinate the cluster 
 <a href=/tags/os/>OS</a>
 </span>
 <span>
+<a href=/tags/prost/>prost</a>
+</span>
+<span>
+<a href=/tags/protobuf/>protobuf</a>
+</span>
+<span>
 <a href=/tags/python/>python</a>
 </span>
 <span>
@@ -412,6 +420,12 @@ Kubernetes cluster structure Master ( act as a manager): coordinate the cluster 
 <a href=/tags/os/>OS</a>
 </span>
 <span>
+<a href=/tags/prost/>prost</a>
+</span>
+<span>
+<a href=/tags/protobuf/>protobuf</a>
+</span>
+<span>
 <a href=/tags/python/>python</a>
 </span>
 <span>
@@ -440,7 +454,7 @@ Kubernetes cluster structure Master ( act as a manager): coordinate the cluster 
 <footer>
 <div class="container-lg clearfix">
 <div class="col-12 footer">
-<span>&copy; 2020-2021
+<span>&copy; 2020-2022
 <a href=https://lmjw.github.io/>LMJW</a>
 | <a href=https://github.com/LMJW/lmjw.github.io>Source code</a>
 | Powered by <a href=https://github.com/dsrkafuu/hugo-theme-fuji/ target=_blank>Fuji-v2</a> & <a href=https://gohugo.io/ target=_blank>Hugo</a>

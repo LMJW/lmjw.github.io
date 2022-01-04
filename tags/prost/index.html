@@ -8,16 +8,16 @@
 <meta http-equiv=cache-control content="no-siteapp">
 <meta name=generator content="Hugo 0.91.2">
 <link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/images/favicons/dsrca.ico>
-<title>tool - LMJW Blog</title>
+<title>prost - LMJW Blog</title>
 <meta name=author content="LMJW">
 <meta name=description content="A minimal Hugo theme with nice theme color.">
-<link rel=alternate type=application/rss+xml href=https://lmjw.github.io/tags/tool/index.xml title="LMJW Blog">
-<meta property="og:title" content="tool">
-<meta name=twitter:title content="tool">
+<link rel=alternate type=application/rss+xml href=https://lmjw.github.io/tags/prost/index.xml title="LMJW Blog">
+<meta property="og:title" content="prost">
+<meta name=twitter:title content="prost">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lmjw.github.io/tags/tool/"><meta property="og:image" content="https://lmjw.github.io/img/og.png">
+<meta property="og:url" content="https://lmjw.github.io/tags/prost/"><meta property="og:image" content="https://lmjw.github.io/img/og.png">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="og:updated_time" content="2021-11-20T00:00:00+00:00">
+<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="og:updated_time" content="2021-12-28T00:00:00+00:00">
 <style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style>
 <link rel=stylesheet href=https://lmjw.github.io/assets/css/fuji.min.css>
 </head>
@@ -35,24 +35,24 @@
 <div class="container-lg clearfix">
 <div class="col-12 col-md-9 float-left content">
 <div class=page-info>
-<span>Posts with the tag tool: </span>
+<span>Posts with the tag prost: </span>
 </div>
 <div class=post>
 <h2 class="post-item post-title">
-<a href=https://lmjw.github.io/post/windowkeymapping/>Painless key mapping on windows</a>
+<a href=https://lmjw.github.io/post/simple-rust-protobuf-grpc-guide/>Simple prost use guid</a>
 </h2>
 <div class="post-item post-meta">
-<span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-11-20</span>
-<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;168 words</span>
+<span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-12-28</span>
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;117 words</span>
 <span><i class="iconfont icon-time-sharp"></i>&nbsp;1 minute</span>
-<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/tool>tool</a>&nbsp;<a href=/tags/key-mapping>key-mapping</a>&nbsp;</span>
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/rust>rust</a>&nbsp;<a href=/tags/tonic>tonic</a>&nbsp;<a href=/tags/prost>prost</a>&nbsp;<a href=/tags/protobuf>protobuf</a>&nbsp;<a href=/tags/build>build</a>&nbsp;</span>
 </div>
 <div class="post-item post-summary markdown-body">
-Recently, I start to using windows for my personal project. One thing I hate about is the keyboard mappings.
-I want to basically do the following mappings
-1 Caps lock key -> Left Ctrl key 2 Left Alt key -> Left Ctrl key 3 Left Windows key -> Left Alt key
-I was using the . The first two key mapping works fine, however, the third mapping has the problem. For example, &ldquo;Win+W&rdquo; should suppose to map to &ldquo;Alt+W&rdquo; which corresponding to the &ldquo;Copy&rdquo; in emacs, however, it opens the &ldquo;Pen&rdquo; app in the Windows.
-I did some research, and found another tool, which called the AutoHotKey.
+Simple tonic/prost example A simple tonic repo setup Using gRPC usually requires both client & server to have same protobuf definition. Client and server usually are not defined in the same repository.
+We can use a separate git repository to store the protobuf definition, and using the git submodule to include the protobuf definition in the corresponding client and server.
+Check sample repo to see how to setup
+A simple prost example Sometime you only want to use protobuf to do serializing and deserializing the message, nothing else. In this case, you will need to use prost only.
+Here is a simplest example of how to do that.
 </div>
 </div>
 </div>
