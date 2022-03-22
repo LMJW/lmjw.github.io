@@ -1,604 +1,82 @@
-<!doctype html><html lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=HandheldFriendly content="True">
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta http-equiv=cache-control content="no-transform">
-<meta http-equiv=cache-control content="no-siteapp">
-<meta name=generator content="Hugo 0.91.2">
-<link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/images/favicons/dsrca.ico>
-<title>Kubernete's tutorial notes - LMJW Blog</title>
-<meta name=author content="LMJW">
-<meta name=description content="A minimal Hugo theme with nice theme color.">
-<meta name=keywords content="Kubernetes,docker">
-<meta property="og:title" content="Kubernete's tutorial notes">
-<meta name=twitter:title content="Kubernete's tutorial notes">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://lmjw.github.io/post/2017-12-06-kubernetes/"><meta property="og:description" content="#Some concepts of Kubernetes Clusters
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=HandheldFriendly content="True"><meta http-equiv=x-ua-compatible content="IE=edge"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=generator content="Hugo 0.95.0"><link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/images/favicons/dsrca.ico><title>Kubernete's tutorial notes - LMJW Blog</title><meta name=author content="LMJW"><meta name=description content="A minimal Hugo theme with nice theme color."><meta name=keywords content="Kubernetes,docker"><meta property="og:title" content="Kubernete's tutorial notes"><meta name=twitter:title content="Kubernete's tutorial notes"><meta property="og:type" content="article"><meta property="og:url" content="https://lmjw.github.io/post/2017-12-06-kubernetes/"><meta property="og:description" content="#Some concepts of Kubernetes Clusters
   Kubernetes cluster(KC) can be analogy to the conventional computational cluster, which includes many computers and to work as a single unit.
   application runs on the KC needs to be containerized.
   the program organizing the KC, namely Kubernete, manage the deployment and make containerized application run in KC in a more efficient way.
-  Kubernetes cluster structure  Master ( act as a manager): coordinate the cluster Nodes (act as worker, the job of work is to run the containerize application)  Master responsibilities : coordinate activities in cluster  scheduling application maintaining application states scaling application rolling new updates  Node(worker)  definition of Node: A node can be a VM or a physical computer that serves as a worker machine in a KC.">
-<meta name=twitter:description content="#Some concepts of Kubernetes Clusters
+  Kubernetes cluster structure  Master ( act as a manager): coordinate the cluster Nodes (act as worker, the job of work is to run the containerize application)  Master responsibilities : coordinate activities in cluster  scheduling application maintaining application states scaling application rolling new updates  Node(worker)  definition of Node: A node can be a VM or a physical computer that serves as a worker machine in a KC."><meta name=twitter:description content="#Some concepts of Kubernetes Clusters
   Kubernetes cluster(KC) can be analogy to the conventional computational cluster, which includes many computers and to work as a single unit.
   application runs on the KC needs to be containerized.
   the program organizing the KC, namely Kubernete, manage the deployment and make containerized application run in KC in a more efficient way.
-  Kubernetes cluster structure  Master ( act as a manager): coordinate the cluster Nodes (act as worker, the job of work is to run the containerize application)  Master responsibilities : coordinate activities in cluster  scheduling application maintaining application states scaling application rolling new updates  Node(worker)  definition of Node: A node can be a VM or a physical computer that serves as a worker machine in a KC."><meta property="og:image" content="https://lmjw.github.io/img/og.png">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="article:published_time" content="2017-12-06T00:00:00+00:00"><meta property="article:modified_time" content="2017-12-06T00:00:00+00:00">
-<style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style>
-<link rel=stylesheet href=https://lmjw.github.io/assets/css/fuji.min.css>
-</head>
-<body data-theme=auto data-theme-auto=true>
-<script data-cfasync=false>var fujiThemeData=localStorage.getItem('fuji_data-theme');fujiThemeData?fujiThemeData!=='auto'&&document.body.setAttribute('data-theme',fujiThemeData==='dark'?'dark':'light'):localStorage.setItem('fuji_data-theme','auto')</script>
-<header>
-<div class="container-lg clearfix">
-<div class="col-12 header">
-<a class=title-main href=https://lmjw.github.io/>LMJW Blog</a>
-<span class=title-sub>My notes.</span>
-</div>
-</div>
-</header>
-<main>
-<div class="container-lg clearfix">
-<div class="col-12 col-md-9 float-left content">
-<article>
-<h2 class="post-item post-title">
-<a href=https://lmjw.github.io/post/2017-12-06-kubernetes/>Kubernete's tutorial notes</a>
-</h2>
-<div class="post-item post-meta">
-<span><i class="iconfont icon-today-sharp"></i>&nbsp;2017-12-06</span>
+  Kubernetes cluster structure  Master ( act as a manager): coordinate the cluster Nodes (act as worker, the job of work is to run the containerize application)  Master responsibilities : coordinate activities in cluster  scheduling application maintaining application states scaling application rolling new updates  Node(worker)  definition of Node: A node can be a VM or a physical computer that serves as a worker machine in a KC."><meta property="og:image" content="https://lmjw.github.io/img/og.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://lmjw.github.io/img/og.png"><meta property="article:published_time" content="2017-12-06T00:00:00+00:00"><meta property="article:modified_time" content="2017-12-06T00:00:00+00:00"><style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style><link rel=stylesheet href=https://lmjw.github.io/assets/css/fuji.min.css></head><body data-theme=auto data-theme-auto=true><script data-cfasync=false>var fujiThemeData=localStorage.getItem("fuji_data-theme");fujiThemeData?fujiThemeData!=="auto"&&document.body.setAttribute("data-theme",fujiThemeData==="dark"?"dark":"light"):localStorage.setItem("fuji_data-theme","auto")</script><header><div class="container-lg clearfix"><div class="col-12 header"><a class=title-main href=https://lmjw.github.io/>LMJW Blog</a>
+<span class=title-sub>My notes.</span></div></div></header><main><div class="container-lg clearfix"><div class="col-12 col-md-9 float-left content"><article><h2 class="post-item post-title"><a href=https://lmjw.github.io/post/2017-12-06-kubernetes/>Kubernete's tutorial notes</a></h2><div class="post-item post-meta"><span><i class="iconfont icon-today-sharp"></i>&nbsp;2017-12-06</span>
 <span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1278 words</span>
 <span><i class="iconfont icon-time-sharp"></i>&nbsp;6 minutes</span>
-<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/kubernetes>Kubernetes</a>&nbsp;<a href=/tags/docker>docker</a>&nbsp;</span>
-</div>
-<div class="post-content markdown-body">
-<p>#Some concepts of Kubernetes Clusters</p>
-<ul>
-<li>
-<p><strong>Kubernetes cluster</strong>(KC) can be analogy to the conventional computational cluster, which includes many computers and to work as a single unit.</p>
-</li>
-<li>
-<p>application runs on the KC needs to be <strong>containerized</strong>.</p>
-</li>
-<li>
-<p>the <strong>program</strong> organizing the KC, namely <strong>Kubernete</strong>, manage the deployment and make containerized application run in KC in a more efficient way.</p>
-</li>
-</ul>
-<h2 id=kubernetes-cluster-structure>Kubernetes cluster structure</h2>
-<ul>
-<li>Master ( act as a manager): coordinate the cluster</li>
-<li>Nodes (act as worker, the job of work is to run the containerize application)</li>
-</ul>
-<p><img class=img-zoomable src=https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg alt="KC diagram">
-</p>
-<h3 id=master-responsibilities--coordinate-activities-in-cluster>Master responsibilities : coordinate activities in cluster</h3>
-<ul>
-<li>scheduling application</li>
-<li>maintaining application states</li>
-<li>scaling application</li>
-<li>rolling new updates</li>
-</ul>
-<h3 id=nodeworker>Node(worker)</h3>
-<ul>
-<li><strong>definition of Node</strong>:
-A node can be a VM or a physical computer that serves as a worker machine in a KC. So, you can think node is just a physical laptop/desktop.</li>
-<li>What node have?
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>description</th>
-<th>Analogy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kubelet</td>
-<td>this guy does two thing: 1. managing the node; 2. communicate with master</td>
-<td></td>
-</tr>
-<tr>
-<td>Docker/rkt</td>
-<td>tool to handle containerized application(containers)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<h3 id=kubernetes-application-deployment>Kubernetes application deployment</h3>
-<ol>
-<li>Kubernetes deployment process</li>
-</ol>
-<ul>
-<li>tell the master to start application containers.</li>
-<li>then master schedules the containers to run on the cluster&rsquo;s nodes.</li>
-<li>master exposes the Kubernetes' API. The node also communicate with this API</li>
-<li>end user can use Kubernete&rsquo;s API to interact with cluster</li>
-<li>Kubernetes can be deployed on either physical or vertial machines</li>
-</ul>
-<ol start=2>
-<li>Kubernetes development,<strong>Minikube</strong></li>
-</ol>
-<ul>
-<li>one simple Kubernetes implementation(simple cluster only contains one node)</li>
-<li>Minikube CLI provide basic bootstrapping operations for cluster (start, stop, status and delete)</li>
-</ul>
-<h2 id=kubernetes-interactive-tutorial>Kubernetes interactive tutorial</h2>
-<h3 id=module-1-creating-a-cluster>Module 1: Creating a cluster</h3>
-<ol>
-<li>check the minikube. Type the commands in terminal</li>
-</ol>
-<pre><code class=language-bash>minikube version
-</code></pre>
-<ol start=2>
-<li>start a cluster</li>
-</ol>
-<pre><code class=language-bash>minikube start
-</code></pre>
-<ol start=3>
-<li>to interact with Kubernetes, we will use the command line interface, <strong>kubectl</strong>. To check whether Kubectl is installed, you can run kubectl version check.</li>
-</ol>
-<pre><code class=language-bash>kubectl version
-</code></pre>
-<ol start=4>
-<li>to see the cluster details, we can type the command</li>
-</ol>
-<pre><code class=language-bash>kubectl cluster-info
-</code></pre>
-<ol start=5>
-<li>to view the cluster&rsquo;s nodes, we can type the command</li>
-</ol>
-<pre><code class=language-bash>kubectl get nodes
-</code></pre>
-<p>###Module 2. Deploy an Application using Kubectl</p>
-<h4 id=kubernetes-application-deployments>Kubernetes application deployments</h4>
-<ol>
-<li>running your Kubernetes cluster</li>
-<li>deploy containerized application on top of it. This requires you to create a Kubernetes <em>Deployment</em> configuration.</li>
-<li>Deployment configuration instruct Kubernetes how to create and update instances of your application.</li>
-<li>Once the deployment is created by you. the Kubernetes master loads the mentioned application instances into individual nodes.</li>
-</ol>
-<h4 id=after-kubernetes-applications-are-deployed>After Kubernetes applications are deployed</h4>
-<ol>
-<li>once the application instances are created, a** Kubernetes Deployment Controller** continuously monitors those instances.</li>
-<li>if a node goes down or get deleted, the <strong>Deployment Controller</strong> replaces it. <em>this provides a self-healing mechanism to address machine failure or maintainance.</em></li>
-</ol>
-<h4 id=now-lets-try-to-deploy-your-first-app-on-kubernetes>Now, let&rsquo;s try to deploy your first app on Kubernetes</h4>
-<p>Never the less, here&rsquo;s a diagram of showing the relationships between different components of Kubernetes cluster.
-<img class=img-zoomable src=https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg alt="KC application deployment">
-</p>
-<ol>
-<li>you can create and manage a deployment by using kubernetes command line interface, <strong>kubectl</strong>.</li>
-<li>when you create a deployment, you need to specify the container image for your application and how many replicas that you want to run.</li>
-</ol>
-<h4 id=first-deployment-example-module-2>First deployment example, Module 2</h4>
-<ul>
-<li>** Node.js** application packaged in a Docker container. <a href=https://github.com/kubernetes/kubernetes-bootcamp target=_blank>source code</a></li>
-<li>goal: deploy your first app on Kubernetes using <strong>kubectl</strong>.</li>
-</ul>
-<ol>
-<li>Kubectl basic commands</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style=text-align:left>command</th>
-<th style=text-align:left>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:left><code>kubectl version</code></td>
-<td style=text-align:left>get the version of kubectl</td>
-</tr>
-<tr>
-<td style=text-align:left><code>kubectl get nodes</code></td>
-<td style=text-align:left>view the nodes in cluster</td>
-</tr>
-</tbody>
-</table>
-<ol start=2>
-<li>run an app using Kubectl</li>
-</ol>
-<pre><code class=language-bash>kubectl run &lt;command&gt;
-</code></pre>
-<p>example:</p>
-<pre><code class=language-bash>kubectl run kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
-</code></pre>
-<p>What this previous command did?</p>
-<ul>
-<li><strong>find</strong> the available nodes that can be used to run the application</li>
-<li><strong>schedule</strong> the application to run on that node</li>
-<li><strong>configure</strong> the <strong>cluster</strong> to reschedule the instance on a new Node when needed</li>
-</ul>
-<ol start=3>
-<li>to list your deployments</li>
-</ol>
-<pre><code class=language-bash>kubectl get deployments
-</code></pre>
-<ol start=4>
-<li>View our apps</li>
-</ol>
-<ul>
-<li>
-<p><strong>pods</strong>: running inside Kubernetes are running on a private, isolated network. (<strong>What the fuck is this pods?</strong>). By default, they are visible from other pods and services within the same kubernetes cluster, but not outside that network.</p>
-</li>
-<li>
-<p><code>kubectl</code> can create a proxy that will forward communications into cluster-wide, private network. (<strong>But how? Show me the code</strong>). <code>kubectl</code> interacting through an API endpoint(<strong>Wtf?</strong>) to communicate with application.</p>
-</li>
-<li>
-<p>This is how, we use a second terminal to open the proxy:</p>
-</li>
-</ul>
-<pre><code class=language-bash>kubectl proxy
-</code></pre>
-<p>So, this is the understanding, <code>kubectl</code> is a piece of program that is run in the bash terminal(host pc).
-After the proxy execution, we now have a connection between our host(terminal) and the <strong>Kubernetes cluster</strong>. The proxy enables direct access to the API through terminals.</p>
-<ul>
-<li>Once this proxy is set, it means we have set up the communications between host and Kubernetes cluster. But how do we actually interact with the pod?</li>
-<li>what it actually happens, is that the proxy will automatically set up proxy endpoints (similar like <code>http://proxy/endpoints</code>) for each pods and we can actually query the APIs for individual pods by using internet protocols with <code>curl</code> command, for example.
-<ul>
-<li>You can see all those APIs hosted through the proxy endpoint, now available at through http://localhost:8001. For example, we can query the version directly through the API using the curl command:
-<pre><code>curl http://localhost:8001/version
-</code></pre>
-</li>
-<li>The API server will automatically create an endpoint for each pod, based on the pod name, that is also accessible through the proxy.</li>
-<li>we can get all the pods name and store it in an environment variable POD_NAME (on the host)
-<pre><code>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{&quot;\n&quot;}}{{end}}')
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id=summary-of-this-section>Summary of this section</h3>
-<h4 id=terms-and-concepts>terms and concepts</h4>
-<table>
-<thead>
-<tr>
-<th>Terms</th>
-<th>Concepts</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kubernetes Cluster (KC)</td>
-<td>The actual cluster that contains many nodes(VMs or physical PCs)</td>
-</tr>
-<tr>
-<td>Kubernetes</td>
-<td>Sometimes indicate the program that organize the KC, managing the application deployment and scheduling.</td>
-</tr>
-<tr>
-<td>Containerize</td>
-<td>Application is packed in a way that is independent from its environment</td>
-</tr>
-<tr>
-<td>Master node</td>
-<td>A special node in the KC. Its main tasks are scheduling and controlling the applications that are running in the normal KC nodes. So, in this sense, the master node controls the normal nodes. In analogy, this nodes is like a manager</td>
-</tr>
-<tr>
-<td>Nodes</td>
-<td>The actual PCs or VMs that are used for running the applications. In analogy, these nodes are like workers.</td>
-</tr>
-<tr>
-<td>Kubelet</td>
-<td>A piece of software (called &ldquo;agent&rdquo; in Kubernetes official document) that taking control of an actual node, and managing the communication with master. Every node has a Kubelet.</td>
-</tr>
-<tr>
-<td>Docker/rkt</td>
-<td>This is a tool to handle containerized applications. Since every node needs to run containerize application, node needs a tool that can be used to manage these applications.</td>
-</tr>
-<tr>
-<td>minikube</td>
-<td>A simple Kubernetes cluster implementation. It only contains 1 Node.</td>
-</tr>
-<tr>
-<td>kubectl</td>
-<td>The command line interface that is used to interact with the Kubernetes program. So this &ldquo;<strong>kubectl</strong>&rdquo; is actually independent of Kubernetes cluster and nodes.</td>
-</tr>
-<tr>
-<td>Deployment configuration</td>
-<td>A configuration file that tells the Kubernetes Cluster how to configure and deploy your applications. Then the master node will then load this file and deploy the applications to nodes. The deployment can also be done by using the &ldquo;kubectl&rdquo; command line interface.</td>
-</tr>
-<tr>
-<td>Deployment controller</td>
-<td>Once the application is deployed on nodes, a Deployment controller will take in charge to monitor all these applications. If nodes goes down or deleted, the deployment controller will replace it with new one.</td>
-</tr>
-<tr>
-<td>pods(?)</td>
-<td>The concept of this is not quite clear yet. To me, it is more like a running instance of an application. There may be more than one instance of applications. In analogy, the pods is like an instance of a class, there are maybe several instances of same class. (<code>dog = Animal(); cat = Animal()</code>, <code>dog</code> and <code>cat</code> are similar to pods)</td>
-</tr>
-<tr>
-<td>Proxy(?)</td>
-<td>The KC is more like a network, where as each pod is act like an user in the KC network. In the KC, a proxy build up a communication channel that allows the pods to be able to communicate with each other.</td>
-</tr>
-<tr>
-<td>endpoint(?)</td>
-<td>Every pods can be linked to the proxy with an address. In my understanding, this address can be referred as endpoint.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</article>
-<div class="license markdown-body">
-<blockquote>
-<p>Unless otherwise noted, the content of this site is licensed under <a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a>.</p>
-</blockquote>
-</div>
-</div>
-<aside class="col-12 col-md-3 float-left sidebar">
-<div class="sidebar-item sidebar-pages">
-<h3>Pages</h3>
-<ul>
-<li>
-<a href=/>Home</a>
-</li>
-<li>
-<a href=/archives/>Archives</a>
-</li>
-<li>
-<a href=/search/>Search</a>
-</li>
-</ul>
-</div>
-<div class="sidebar-item sidebar-links">
-<h3>Links</h3>
-<ul>
-<li>
-<a href=https://github.com/LMJW target=_blank><span>GitHub</span></a>
-</li>
-</ul>
-</div>
-<div class="sidebar-item sidebar-tags">
-<h3>Tags</h3>
-<div>
-<span>
-<a href=/tags/bash/>bash</a>
-</span>
-<span>
-<a href=/tags/build/>build</a>
-</span>
-<span>
-<a href=/tags/cli/>CLI</a>
-</span>
-<span>
-<a href=/tags/cpp/>cpp</a>
-</span>
-<span>
-<a href=/tags/deep-learning/>deep-learning</a>
-</span>
-<span>
-<a href=/tags/docker/>docker</a>
-</span>
-<span>
-<a href=/tags/gmp/>GMP</a>
-</span>
-<span>
-<a href=/tags/golang/>golang</a>
-</span>
-<span>
-<a href=/tags/grpc/>grpc</a>
-</span>
-<span>
-<a href=/tags/kernel/>kernel</a>
-</span>
-<span>
-<a href=/tags/key-mapping/>key-mapping</a>
-</span>
-<span>
-<a href=/tags/kubernetes/>Kubernetes</a>
-</span>
-<span>
-<a href=/tags/markdown-cheatsheet/>Markdown CheatSheet</a>
-</span>
-<span>
-<a href=/tags/network/>network</a>
-</span>
-<span>
-<a href=/tags/openssl/>openssl</a>
-</span>
-<span>
-<a href=/tags/os/>OS</a>
-</span>
-<span>
-<a href=/tags/prost/>prost</a>
-</span>
-<span>
-<a href=/tags/protobuf/>protobuf</a>
-</span>
-<span>
-<a href=/tags/python/>python</a>
-</span>
-<span>
-<a href=/tags/rust/>rust</a>
-</span>
-<span>
-<a href=/tags/subprocess/>subprocess</a>
-</span>
-<span>
-<a href=/tags/tonic/>tonic</a>
-</span>
-<span>
-<a href=/tags/tool/>tool</a>
-</span>
-<span>
-<a href=/tags/tools/>Tools</a>
-</span>
-</div>
-</div>
-<div class="sidebar-item sidebar-toc">
-<h3>Table of Contents</h3><nav id=TableOfContents>
-<ul>
-<li><a href=#kubernetes-cluster-structure>Kubernetes cluster structure</a>
-<ul>
-<li><a href=#master-responsibilities--coordinate-activities-in-cluster>Master responsibilities : coordinate activities in cluster</a></li>
-<li><a href=#nodeworker>Node(worker)</a></li>
-<li><a href=#kubernetes-application-deployment>Kubernetes application deployment</a></li>
-</ul>
-</li>
-<li><a href=#kubernetes-interactive-tutorial>Kubernetes interactive tutorial</a>
-<ul>
-<li><a href=#module-1-creating-a-cluster>Module 1: Creating a cluster</a></li>
-<li><a href=#summary-of-this-section>Summary of this section</a></li>
-</ul>
-</li>
-</ul>
-</nav></div>
-</aside>
-</div>
-<div class=btn>
-<div class=btn-menu id=btn-menu>
-<i class="iconfont icon-grid-sharp"></i>
-</div>
-<div class=btn-toggle-mode>
-<i class="iconfont icon-contrast-sharp"></i>
-</div>
-<div class=btn-scroll-top>
-<i class="iconfont icon-chevron-up-circle-sharp"></i>
-</div>
-</div>
-<aside class=sidebar-mobile style=display:none>
-<div class=sidebar-wrapper>
-<div class="sidebar-item sidebar-pages">
-<h3>Pages</h3>
-<ul>
-<li>
-<a href=/>Home</a>
-</li>
-<li>
-<a href=/archives/>Archives</a>
-</li>
-<li>
-<a href=/search/>Search</a>
-</li>
-</ul>
-</div>
-<div class="sidebar-item sidebar-links">
-<h3>Links</h3>
-<ul>
-<li>
-<a href=https://github.com/LMJW target=_blank><span>GitHub</span></a>
-</li>
-</ul>
-</div>
-<div class="sidebar-item sidebar-tags">
-<h3>Tags</h3>
-<div>
-<span>
-<a href=/tags/bash/>bash</a>
-</span>
-<span>
-<a href=/tags/build/>build</a>
-</span>
-<span>
-<a href=/tags/cli/>CLI</a>
-</span>
-<span>
-<a href=/tags/cpp/>cpp</a>
-</span>
-<span>
-<a href=/tags/deep-learning/>deep-learning</a>
-</span>
-<span>
-<a href=/tags/docker/>docker</a>
-</span>
-<span>
-<a href=/tags/gmp/>GMP</a>
-</span>
-<span>
-<a href=/tags/golang/>golang</a>
-</span>
-<span>
-<a href=/tags/grpc/>grpc</a>
-</span>
-<span>
-<a href=/tags/kernel/>kernel</a>
-</span>
-<span>
-<a href=/tags/key-mapping/>key-mapping</a>
-</span>
-<span>
-<a href=/tags/kubernetes/>Kubernetes</a>
-</span>
-<span>
-<a href=/tags/markdown-cheatsheet/>Markdown CheatSheet</a>
-</span>
-<span>
-<a href=/tags/network/>network</a>
-</span>
-<span>
-<a href=/tags/openssl/>openssl</a>
-</span>
-<span>
-<a href=/tags/os/>OS</a>
-</span>
-<span>
-<a href=/tags/prost/>prost</a>
-</span>
-<span>
-<a href=/tags/protobuf/>protobuf</a>
-</span>
-<span>
-<a href=/tags/python/>python</a>
-</span>
-<span>
-<a href=/tags/rust/>rust</a>
-</span>
-<span>
-<a href=/tags/subprocess/>subprocess</a>
-</span>
-<span>
-<a href=/tags/tonic/>tonic</a>
-</span>
-<span>
-<a href=/tags/tool/>tool</a>
-</span>
-<span>
-<a href=/tags/tools/>Tools</a>
-</span>
-</div>
-</div>
-<div class="sidebar-item sidebar-toc">
-<h3>Table of Contents</h3>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#kubernetes-cluster-structure>Kubernetes cluster structure</a>
-<ul>
-<li><a href=#master-responsibilities--coordinate-activities-in-cluster>Master responsibilities : coordinate activities in cluster</a></li>
-<li><a href=#nodeworker>Node(worker)</a></li>
-<li><a href=#kubernetes-application-deployment>Kubernetes application deployment</a></li>
-</ul>
-</li>
-<li><a href=#kubernetes-interactive-tutorial>Kubernetes interactive tutorial</a>
-<ul>
-<li><a href=#module-1-creating-a-cluster>Module 1: Creating a cluster</a></li>
-<li><a href=#summary-of-this-section>Summary of this section</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</aside>
-</main>
-<footer>
-<div class="container-lg clearfix">
-<div class="col-12 footer">
-<span>&copy; 2020-2022
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/tags/kubernetes>Kubernetes</a>&nbsp;<a href=/tags/docker>docker</a>&nbsp;</span></div><div class="post-content markdown-body"><p>#Some concepts of Kubernetes Clusters</p><ul><li><p><strong>Kubernetes cluster</strong>(KC) can be analogy to the conventional computational cluster, which includes many computers and to work as a single unit.</p></li><li><p>application runs on the KC needs to be <strong>containerized</strong>.</p></li><li><p>the <strong>program</strong> organizing the KC, namely <strong>Kubernete</strong>, manage the deployment and make containerized application run in KC in a more efficient way.</p></li></ul><h2 id=kubernetes-cluster-structure>Kubernetes cluster structure</h2><ul><li>Master ( act as a manager): coordinate the cluster</li><li>Nodes (act as worker, the job of work is to run the containerize application)</li></ul><p><img class=img-zoomable src=https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg alt="KC diagram"></p><h3 id=master-responsibilities--coordinate-activities-in-cluster>Master responsibilities : coordinate activities in cluster</h3><ul><li>scheduling application</li><li>maintaining application states</li><li>scaling application</li><li>rolling new updates</li></ul><h3 id=nodeworker>Node(worker)</h3><ul><li><strong>definition of Node</strong>:
+A node can be a VM or a physical computer that serves as a worker machine in a KC. So, you can think node is just a physical laptop/desktop.</li><li>What node have?<table><thead><tr><th>name</th><th>description</th><th>Analogy</th></tr></thead><tbody><tr><td>Kubelet</td><td>this guy does two thing: 1. managing the node; 2. communicate with master</td><td></td></tr><tr><td>Docker/rkt</td><td>tool to handle containerized application(containers)</td><td></td></tr></tbody></table></li></ul><h3 id=kubernetes-application-deployment>Kubernetes application deployment</h3><ol><li>Kubernetes deployment process</li></ol><ul><li>tell the master to start application containers.</li><li>then master schedules the containers to run on the cluster&rsquo;s nodes.</li><li>master exposes the Kubernetes&rsquo; API. The node also communicate with this API</li><li>end user can use Kubernete&rsquo;s API to interact with cluster</li><li>Kubernetes can be deployed on either physical or vertial machines</li></ul><ol start=2><li>Kubernetes development,<strong>Minikube</strong></li></ol><ul><li>one simple Kubernetes implementation(simple cluster only contains one node)</li><li>Minikube CLI provide basic bootstrapping operations for cluster (start, stop, status and delete)</li></ul><h2 id=kubernetes-interactive-tutorial>Kubernetes interactive tutorial</h2><h3 id=module-1-creating-a-cluster>Module 1: Creating a cluster</h3><ol><li>check the minikube. Type the commands in terminal</li></ol><pre><code class=language-bash>minikube version
+</code></pre><ol start=2><li>start a cluster</li></ol><pre><code class=language-bash>minikube start
+</code></pre><ol start=3><li>to interact with Kubernetes, we will use the command line interface, <strong>kubectl</strong>. To check whether Kubectl is installed, you can run kubectl version check.</li></ol><pre><code class=language-bash>kubectl version
+</code></pre><ol start=4><li>to see the cluster details, we can type the command</li></ol><pre><code class=language-bash>kubectl cluster-info
+</code></pre><ol start=5><li>to view the cluster&rsquo;s nodes, we can type the command</li></ol><pre><code class=language-bash>kubectl get nodes
+</code></pre><p>###Module 2. Deploy an Application using Kubectl</p><h4 id=kubernetes-application-deployments>Kubernetes application deployments</h4><ol><li>running your Kubernetes cluster</li><li>deploy containerized application on top of it. This requires you to create a Kubernetes <em>Deployment</em> configuration.</li><li>Deployment configuration instruct Kubernetes how to create and update instances of your application.</li><li>Once the deployment is created by you. the Kubernetes master loads the mentioned application instances into individual nodes.</li></ol><h4 id=after-kubernetes-applications-are-deployed>After Kubernetes applications are deployed</h4><ol><li>once the application instances are created, a** Kubernetes Deployment Controller** continuously monitors those instances.</li><li>if a node goes down or get deleted, the <strong>Deployment Controller</strong> replaces it. <em>this provides a self-healing mechanism to address machine failure or maintainance.</em></li></ol><h4 id=now-lets-try-to-deploy-your-first-app-on-kubernetes>Now, let&rsquo;s try to deploy your first app on Kubernetes</h4><p>Never the less, here&rsquo;s a diagram of showing the relationships between different components of Kubernetes cluster.
+<img class=img-zoomable src=https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg alt="KC application deployment"></p><ol><li>you can create and manage a deployment by using kubernetes command line interface, <strong>kubectl</strong>.</li><li>when you create a deployment, you need to specify the container image for your application and how many replicas that you want to run.</li></ol><h4 id=first-deployment-example-module-2>First deployment example, Module 2</h4><ul><li>** Node.js** application packaged in a Docker container. <a href=https://github.com/kubernetes/kubernetes-bootcamp target=_blank>source code</a></li><li>goal: deploy your first app on Kubernetes using <strong>kubectl</strong>.</li></ul><ol><li>Kubectl basic commands</li></ol><table><thead><tr><th style=text-align:left>command</th><th style=text-align:left>description</th></tr></thead><tbody><tr><td style=text-align:left><code>kubectl version</code></td><td style=text-align:left>get the version of kubectl</td></tr><tr><td style=text-align:left><code>kubectl get nodes</code></td><td style=text-align:left>view the nodes in cluster</td></tr></tbody></table><ol start=2><li>run an app using Kubectl</li></ol><pre><code class=language-bash>kubectl run &lt;command&gt;
+</code></pre><p>example:</p><pre><code class=language-bash>kubectl run kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
+</code></pre><p>What this previous command did?</p><ul><li><strong>find</strong> the available nodes that can be used to run the application</li><li><strong>schedule</strong> the application to run on that node</li><li><strong>configure</strong> the <strong>cluster</strong> to reschedule the instance on a new Node when needed</li></ul><ol start=3><li>to list your deployments</li></ol><pre><code class=language-bash>kubectl get deployments
+</code></pre><ol start=4><li>View our apps</li></ol><ul><li><p><strong>pods</strong>: running inside Kubernetes are running on a private, isolated network. (<strong>What the fuck is this pods?</strong>). By default, they are visible from other pods and services within the same kubernetes cluster, but not outside that network.</p></li><li><p><code>kubectl</code> can create a proxy that will forward communications into cluster-wide, private network. (<strong>But how? Show me the code</strong>). <code>kubectl</code> interacting through an API endpoint(<strong>Wtf?</strong>) to communicate with application.</p></li><li><p>This is how, we use a second terminal to open the proxy:</p></li></ul><pre><code class=language-bash>kubectl proxy
+</code></pre><p>So, this is the understanding, <code>kubectl</code> is a piece of program that is run in the bash terminal(host pc).
+After the proxy execution, we now have a connection between our host(terminal) and the <strong>Kubernetes cluster</strong>. The proxy enables direct access to the API through terminals.</p><ul><li>Once this proxy is set, it means we have set up the communications between host and Kubernetes cluster. But how do we actually interact with the pod?</li><li>what it actually happens, is that the proxy will automatically set up proxy endpoints (similar like <code>http://proxy/endpoints</code>) for each pods and we can actually query the APIs for individual pods by using internet protocols with <code>curl</code> command, for example.<ul><li>You can see all those APIs hosted through the proxy endpoint, now available at through http://localhost:8001. For example, we can query the version directly through the API using the curl command:<pre><code>curl http://localhost:8001/version
+</code></pre></li><li>The API server will automatically create an endpoint for each pod, based on the pod name, that is also accessible through the proxy.</li><li>we can get all the pods name and store it in an environment variable POD_NAME (on the host)<pre><code>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{&quot;\n&quot;}}{{end}}')
+</code></pre></li></ul></li></ul><h3 id=summary-of-this-section>Summary of this section</h3><h4 id=terms-and-concepts>terms and concepts</h4><table><thead><tr><th>Terms</th><th>Concepts</th></tr></thead><tbody><tr><td>Kubernetes Cluster (KC)</td><td>The actual cluster that contains many nodes(VMs or physical PCs)</td></tr><tr><td>Kubernetes</td><td>Sometimes indicate the program that organize the KC, managing the application deployment and scheduling.</td></tr><tr><td>Containerize</td><td>Application is packed in a way that is independent from its environment</td></tr><tr><td>Master node</td><td>A special node in the KC. Its main tasks are scheduling and controlling the applications that are running in the normal KC nodes. So, in this sense, the master node controls the normal nodes. In analogy, this nodes is like a manager</td></tr><tr><td>Nodes</td><td>The actual PCs or VMs that are used for running the applications. In analogy, these nodes are like workers.</td></tr><tr><td>Kubelet</td><td>A piece of software (called &ldquo;agent&rdquo; in Kubernetes official document) that taking control of an actual node, and managing the communication with master. Every node has a Kubelet.</td></tr><tr><td>Docker/rkt</td><td>This is a tool to handle containerized applications. Since every node needs to run containerize application, node needs a tool that can be used to manage these applications.</td></tr><tr><td>minikube</td><td>A simple Kubernetes cluster implementation. It only contains 1 Node.</td></tr><tr><td>kubectl</td><td>The command line interface that is used to interact with the Kubernetes program. So this &ldquo;<strong>kubectl</strong>&rdquo; is actually independent of Kubernetes cluster and nodes.</td></tr><tr><td>Deployment configuration</td><td>A configuration file that tells the Kubernetes Cluster how to configure and deploy your applications. Then the master node will then load this file and deploy the applications to nodes. The deployment can also be done by using the &ldquo;kubectl&rdquo; command line interface.</td></tr><tr><td>Deployment controller</td><td>Once the application is deployed on nodes, a Deployment controller will take in charge to monitor all these applications. If nodes goes down or deleted, the deployment controller will replace it with new one.</td></tr><tr><td>pods(?)</td><td>The concept of this is not quite clear yet. To me, it is more like a running instance of an application. There may be more than one instance of applications. In analogy, the pods is like an instance of a class, there are maybe several instances of same class. (<code>dog = Animal(); cat = Animal()</code>, <code>dog</code> and <code>cat</code> are similar to pods)</td></tr><tr><td>Proxy(?)</td><td>The KC is more like a network, where as each pod is act like an user in the KC network. In the KC, a proxy build up a communication channel that allows the pods to be able to communicate with each other.</td></tr><tr><td>endpoint(?)</td><td>Every pods can be linked to the proxy with an address. In my understanding, this address can be referred as endpoint.</td></tr></tbody></table></div></article><div class="license markdown-body"><blockquote><p>Unless otherwise noted, the content of this site is licensed under <a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>CC BY-NC-SA 4.0</a>.</p></blockquote></div></div><aside class="col-12 col-md-3 float-left sidebar"><div class="sidebar-item sidebar-pages"><h3>Pages</h3><ul><li><a href=/>Home</a></li><li><a href=/archives/>Archives</a></li><li><a href=/search/>Search</a></li></ul></div><div class="sidebar-item sidebar-links"><h3>Links</h3><ul><li><a href=https://github.com/LMJW target=_blank><span>GitHub</span></a></li></ul></div><div class="sidebar-item sidebar-tags"><h3>Tags</h3><div><span><a href=/tags/bash/>bash</a></span>
+<span><a href=/tags/build/>build</a></span>
+<span><a href=/tags/cli/>CLI</a></span>
+<span><a href=/tags/cpp/>cpp</a></span>
+<span><a href=/tags/cs/>CS</a></span>
+<span><a href=/tags/deep-learning/>deep-learning</a></span>
+<span><a href=/tags/docker/>docker</a></span>
+<span><a href=/tags/gmp/>GMP</a></span>
+<span><a href=/tags/golang/>golang</a></span>
+<span><a href=/tags/grpc/>grpc</a></span>
+<span><a href=/tags/kernel/>kernel</a></span>
+<span><a href=/tags/key-mapping/>key-mapping</a></span>
+<span><a href=/tags/kubernetes/>Kubernetes</a></span>
+<span><a href=/tags/markdown-cheatsheet/>Markdown CheatSheet</a></span>
+<span><a href=/tags/network/>network</a></span>
+<span><a href=/tags/openssl/>openssl</a></span>
+<span><a href=/tags/os/>OS</a></span>
+<span><a href=/tags/prost/>prost</a></span>
+<span><a href=/tags/protobuf/>protobuf</a></span>
+<span><a href=/tags/python/>python</a></span>
+<span><a href=/tags/rust/>rust</a></span>
+<span><a href=/tags/subprocess/>subprocess</a></span>
+<span><a href=/tags/tonic/>tonic</a></span>
+<span><a href=/tags/tool/>tool</a></span>
+<span><a href=/tags/tools/>Tools</a></span></div></div><div class="sidebar-item sidebar-toc"><h3>Table of Contents</h3><nav id=TableOfContents><ul><li><a href=#kubernetes-cluster-structure>Kubernetes cluster structure</a><ul><li><a href=#master-responsibilities--coordinate-activities-in-cluster>Master responsibilities : coordinate activities in cluster</a></li><li><a href=#nodeworker>Node(worker)</a></li><li><a href=#kubernetes-application-deployment>Kubernetes application deployment</a></li></ul></li><li><a href=#kubernetes-interactive-tutorial>Kubernetes interactive tutorial</a><ul><li><a href=#module-1-creating-a-cluster>Module 1: Creating a cluster</a></li><li><a href=#summary-of-this-section>Summary of this section</a></li></ul></li></ul></nav></div></aside></div><div class=btn><div class=btn-menu id=btn-menu><i class="iconfont icon-grid-sharp"></i></div><div class=btn-toggle-mode><i class="iconfont icon-contrast-sharp"></i></div><div class=btn-scroll-top><i class="iconfont icon-chevron-up-circle-sharp"></i></div></div><aside class=sidebar-mobile style=display:none><div class=sidebar-wrapper><div class="sidebar-item sidebar-pages"><h3>Pages</h3><ul><li><a href=/>Home</a></li><li><a href=/archives/>Archives</a></li><li><a href=/search/>Search</a></li></ul></div><div class="sidebar-item sidebar-links"><h3>Links</h3><ul><li><a href=https://github.com/LMJW target=_blank><span>GitHub</span></a></li></ul></div><div class="sidebar-item sidebar-tags"><h3>Tags</h3><div><span><a href=/tags/bash/>bash</a></span>
+<span><a href=/tags/build/>build</a></span>
+<span><a href=/tags/cli/>CLI</a></span>
+<span><a href=/tags/cpp/>cpp</a></span>
+<span><a href=/tags/cs/>CS</a></span>
+<span><a href=/tags/deep-learning/>deep-learning</a></span>
+<span><a href=/tags/docker/>docker</a></span>
+<span><a href=/tags/gmp/>GMP</a></span>
+<span><a href=/tags/golang/>golang</a></span>
+<span><a href=/tags/grpc/>grpc</a></span>
+<span><a href=/tags/kernel/>kernel</a></span>
+<span><a href=/tags/key-mapping/>key-mapping</a></span>
+<span><a href=/tags/kubernetes/>Kubernetes</a></span>
+<span><a href=/tags/markdown-cheatsheet/>Markdown CheatSheet</a></span>
+<span><a href=/tags/network/>network</a></span>
+<span><a href=/tags/openssl/>openssl</a></span>
+<span><a href=/tags/os/>OS</a></span>
+<span><a href=/tags/prost/>prost</a></span>
+<span><a href=/tags/protobuf/>protobuf</a></span>
+<span><a href=/tags/python/>python</a></span>
+<span><a href=/tags/rust/>rust</a></span>
+<span><a href=/tags/subprocess/>subprocess</a></span>
+<span><a href=/tags/tonic/>tonic</a></span>
+<span><a href=/tags/tool/>tool</a></span>
+<span><a href=/tags/tools/>Tools</a></span></div></div><div class="sidebar-item sidebar-toc"><h3>Table of Contents</h3><nav id=TableOfContents><ul><li><a href=#kubernetes-cluster-structure>Kubernetes cluster structure</a><ul><li><a href=#master-responsibilities--coordinate-activities-in-cluster>Master responsibilities : coordinate activities in cluster</a></li><li><a href=#nodeworker>Node(worker)</a></li><li><a href=#kubernetes-application-deployment>Kubernetes application deployment</a></li></ul></li><li><a href=#kubernetes-interactive-tutorial>Kubernetes interactive tutorial</a><ul><li><a href=#module-1-creating-a-cluster>Module 1: Creating a cluster</a></li><li><a href=#summary-of-this-section>Summary of this section</a></li></ul></li></ul></nav></div></div></aside></main><footer><div class="container-lg clearfix"><div class="col-12 footer"><span>&copy; 2020-2022
 <a href=https://lmjw.github.io/>LMJW</a>
 | <a href=https://github.com/LMJW/lmjw.github.io>Source code</a>
-| Powered by <a href=https://github.com/dsrkafuu/hugo-theme-fuji/ target=_blank>Fuji-v2</a> & <a href=https://gohugo.io/ target=_blank>Hugo</a>
-</span>
-</div>
-</div>
-</footer>
-<script defer src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js></script>
+| Powered by <a href=https://github.com/dsrkafuu/hugo-theme-fuji/ target=_blank>Fuji-v2</a> & <a href=https://gohugo.io/ target=_blank>Hugo</a></span></div></div></footer><script defer src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js></script>
 <script defer src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script>
 <script defer src=https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js></script>
 <script defer src=https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js></script>
-<script defer src=/assets/js/fuji.min.js></script>
-</body>
-</html>
+<script defer src=/assets/js/fuji.min.js></script></body></html>
