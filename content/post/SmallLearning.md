@@ -19,6 +19,19 @@ tags: [rust, CS]
   checker. `Box::clone` should be relatively not expensive as mentioned in [rust
   book](https://doc.rust-lang.org/rust-by-example/std/box.html): `a box is a
   smart pointer to a heap allocated value of T`.
+- Check if key in HashMap, use `HashMap.contains_key(&key)`,
+  `HashMap.remove(&key)` for delete, `HashMap.insert(key, val)` for insert key
+- `*HashMap.entry(&key).or_insert(value) += 1` can be used as default map
+- Double side queue: `VecDeque`, we can `push/pop_front` and `push/pop_back`
+- `char` can be force convert to `u8` if we want: `'a' as u8` 
+- `Rc<RefCell<T>>` can be get the internal `&mut T` by call `borrow_mut()`
+- `&mut [T]` can call `&mut [T].clone/copy_from_slice(&[T])`, but their length
+  needs to be the same
+- `&[T]` has method `to_vec` that can clone it to a new vector
+- `&mut [T]` has `rotate_left/right`  and `reverse` method
+
+
+
 
 ## Docker
 - Docker can be run with `--network=host` on windows, but as stated by
