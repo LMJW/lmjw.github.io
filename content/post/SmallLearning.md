@@ -29,6 +29,12 @@ tags: [rust, CS]
   needs to be the same
 - `&[T]` has method `to_vec` that can clone it to a new vector
 - `&mut [T]` has `rotate_left/right`  and `reverse` method
+- `Vec<char>` can be collect into string using
+  `x.chars().into_iter().collect<String>()`
+- `char` can use `to_uppercase/lowercase()` convert to up/lower case characters.
+- `char` has `is_ascii_alphabetic` method
+- `slice` has method `.split_at(usize)` so the slice can be split into two parts
+
 
 
 
