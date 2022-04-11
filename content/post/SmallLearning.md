@@ -34,6 +34,14 @@ tags: [rust, CS]
 - `char` can use `to_uppercase/lowercase()` convert to up/lower case characters.
 - `char` has `is_ascii_alphabetic` method
 - `slice` has method `.split_at(usize)` so the slice can be split into two parts
+- `iter` has fold method, which allows we to fold iterator. e.g.
+  ```rust
+  vec![1,1,1,2,3].iter().fold(HashMap::new(), |mut map, i|{
+    let val = map.entry(i).or_insert(0); *val += 1; map
+  })`
+  // equals to HashMap{1:3, 2:1, 3:1}
+  ```
+
 
 
 
