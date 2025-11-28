@@ -1,5 +1,5 @@
 ---
-title: common knowledge cheat sheet
+title: 2022-03-22-common knowledge cheat sheet
 author: LMJW
 tags: [rust, CS]
 ---

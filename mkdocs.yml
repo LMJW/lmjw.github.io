@@ -56,6 +56,5 @@ nav:
       - OOP Design Notes: blog/OOPDesignNotes.md
       - Small Learning: blog/SmallLearning.md
       - Window Key Mapping: blog/WindowKeyMapping.md
-      - Hello world: blog/hello-world.md
       - Simple Rust protobuf gRPC guide: blog/simple-rust-protobuf-grpc-guide.md
   - Tags: tags.md

@@ -1,6 +1,6 @@
 ---
 date: 2022-04-05
-title: OOP design notes
+title: 2022-04-02-OOP design notes
 author: LMJW
 tags: [OOP, CS]
 ---

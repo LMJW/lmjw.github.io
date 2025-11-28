@@ -1,6 +1,6 @@
 ---
 date: 2021-12-28
-title: Simple prost use guid
+title: 2022-01-05-Simple prost use guid
 author: LMJW
 tags: [rust, tonic, prost, protobuf, build]
 ---

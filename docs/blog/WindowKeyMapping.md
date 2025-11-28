@@ -1,6 +1,6 @@
 ---
 date: 2021-11-20
-title: Painless key mapping on windows
+title: 2021-11-20-Painless key mapping on windows
 author: LMJW
 tags: [tool, key-mapping]
 ---

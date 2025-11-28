@@ -30,11 +30,11 @@ A link to [Jekyll Now](http://github.com/barryclark/jekyll-now/). A big ass lite
 ```
 A link to [Jekyll Now](http://github.com/barryclark/jekyll-now/). A big ass literal link <http://github.com/barryclark/jekyll-now/>
 ```
-An image, located within /images
+An image, located within `image/openssl_key_diagram.png`
 
-![an image alt text]({{ site.baseurl }}/images/jekyll-logo.png "an image title")
+![an image alt text](image/openssl_key_diagram.png "an image title")
 ```
-![an image alt text]({{ site.baseurl }}/images/jekyll-logo.png "an image title")
+![an image alt text](image/openssl_key_diagram.png "an image title")
 ```
 ----
 * A bulletted list
