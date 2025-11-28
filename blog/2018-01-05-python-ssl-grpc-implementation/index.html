@@ -9,30 +9,34 @@
         <meta name="description" content="Personal notes and blog">
       
       
-      
-        <link rel="canonical" href="https://lmjw.github.io/">
-      
+        <meta name="author" content="LMJW">
       
       
-        <link rel="next" href="blog/">
+        <link rel="canonical" href="https://lmjw.github.io/blog/2018-01-05-python-ssl-grpc-implementation/">
+      
+      
+        <link rel="prev" href="../2018-01-05-OpenSSL-basic-concepts/">
+      
+      
+        <link rel="next" href="../2019-06-12-Intro-to-deep-learning-notes/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>lmjw</title>
+        <title>A python example of realizing secure grpc communication - lmjw</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lmjw-blog" class="md-skip">
+        <a href="#a-python-example-of-realizing-secure-grpc-communication" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="lmjw" class="md-header__button md-logo" aria-label="lmjw" data-md-component="logo">
+    <a href="../.." title="lmjw" class="md-header__button md-logo" aria-label="lmjw" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              A python example of realizing secure grpc communication
             
           </span>
         </div>
@@ -219,11 +223,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,11 +242,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="blog/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -262,7 +266,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="tags/" class="md-tabs__link">
+      <a href="../../tags/" class="md-tabs__link">
         
   
   
@@ -297,7 +301,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="lmjw" class="md-nav__button md-logo" aria-label="lmjw" data-md-component="logo">
+    <a href="../.." title="lmjw" class="md-nav__button md-logo" aria-label="lmjw" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -324,19 +328,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -352,7 +347,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -361,24 +355,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -396,7 +395,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -414,7 +413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -442,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2014-3-3-Markdown-style-guide/" class="md-nav__link">
+      <a href="../2014-3-3-Markdown-style-guide/" class="md-nav__link">
         
   
   
@@ -470,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2016-03-05-my-favourit-softwares/" class="md-nav__link">
+      <a href="../2016-03-05-my-favourit-softwares/" class="md-nav__link">
         
   
   
@@ -498,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2017-11-26-blog-docker-python-golang/" class="md-nav__link">
+      <a href="../2017-11-26-blog-docker-python-golang/" class="md-nav__link">
         
   
   
@@ -526,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2017-11-28-python-subprocess/" class="md-nav__link">
+      <a href="../2017-11-28-python-subprocess/" class="md-nav__link">
         
   
   
@@ -554,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2017-11-30-Install-GMP-on-windows10-machine/" class="md-nav__link">
+      <a href="../2017-11-30-Install-GMP-on-windows10-machine/" class="md-nav__link">
         
   
   
@@ -582,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2017-12-06-Kubernetes/" class="md-nav__link">
+      <a href="../2017-12-06-Kubernetes/" class="md-nav__link">
         
   
   
@@ -610,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2017-12-26-docker-grpc-network/" class="md-nav__link">
+      <a href="../2017-12-26-docker-grpc-network/" class="md-nav__link">
         
   
   
@@ -638,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2018-01-05-OpenSSL-basic-concepts/" class="md-nav__link">
+      <a href="../2018-01-05-OpenSSL-basic-concepts/" class="md-nav__link">
         
   
   
@@ -663,10 +662,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="blog/2018-01-05-python-ssl-grpc-implementation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2018-01-05 Python SSL gRPC implementation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -682,6 +708,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links-and-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful links and references:
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -694,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2019-06-12-Intro-to-deep-learning-notes/" class="md-nav__link">
+      <a href="../2019-06-12-Intro-to-deep-learning-notes/" class="md-nav__link">
         
   
   
@@ -722,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2019-11-24-Data-Oriented-Design/" class="md-nav__link">
+      <a href="../2019-11-24-Data-Oriented-Design/" class="md-nav__link">
         
   
   
@@ -750,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/2021-05-17-Notes-about-learning-OS-dev/" class="md-nav__link">
+      <a href="../2021-05-17-Notes-about-learning-OS-dev/" class="md-nav__link">
         
   
   
@@ -778,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/OOPDesignNotes/" class="md-nav__link">
+      <a href="../OOPDesignNotes/" class="md-nav__link">
         
   
   
@@ -806,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/SmallLearning/" class="md-nav__link">
+      <a href="../SmallLearning/" class="md-nav__link">
         
   
   
@@ -834,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/WindowKeyMapping/" class="md-nav__link">
+      <a href="../WindowKeyMapping/" class="md-nav__link">
         
   
   
@@ -862,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/simple-rust-protobuf-grpc-guide/" class="md-nav__link">
+      <a href="../simple-rust-protobuf-grpc-guide/" class="md-nav__link">
         
   
   
@@ -897,7 +954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tags/" class="md-nav__link">
+      <a href="../../tags/" class="md-nav__link">
         
   
   
@@ -937,6 +994,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links-and-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful links and references:
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -950,19 +1026,58 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">docker</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">grpc</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">python</span>
+      
+    
+  </nav>
+
 
   
   
 
 
-<h1 id="lmjw-blog">Lmjw Blog<a class="headerlink" href="#lmjw-blog" title="Permanent link">&para;</a></h1>
-<p>Welcome to my personal notes and blog.</p>
+<h1 id="a-python-example-of-realizing-secure-grpc-communication">A python example of realizing secure grpc communication<a class="headerlink" href="#a-python-example-of-realizing-secure-grpc-communication" title="Permanent link">&para;</a></h1>
+<h3 id="useful-links-and-references">Useful links and references:<a class="headerlink" href="#useful-links-and-references" title="Permanent link">&para;</a></h3>
+<p>Here are some links that I found it can be helpful when I was trying to work out how to setup the python ssl communication.</p>
+<p><a href="https://bbengfort.github.io/programmer/2017/03/03/secure-grpc.html">Secure gRPC with TLS/SSL</a>, This is golang implementation</p>
+<p><a href="https://github.com/square/certstrap#sign-certificate-request-of-host-and-generate-the-certificate">certstrap</a>, a convienient tool to generate openssl keys and certificate</p>
+<p><a href="https://grpc.io/docs/guides/auth.html">gRPC authentication</a>, the official guide of grpc</p>
+<p><a href="https://grpc.io/grpc/python/grpc.html?highlight=credentials#grpc.ssl_server_credentials">grpcio, python package</a>, the source code and official document of grpc python</p>
+<p><a href="https://github.com/grpc/grpc-go/blob/master/credentials/credentials.go">grpc golang ssl example</a>, another golang example of ssl communication</p>
+<p><a href="https://crypto.stackexchange.com/questions/43697/what-is-the-difference-between-pem-csr-key-and-crt">What is the difference between .pem , .csr , .key and .crt?</a>, a stackexchange question which explains the concepts and differences of different types of files</p>
+<p><a href="https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file">What is a Pem file and how does it differ from other OpenSSL Generated Key File Formats?</a>, a stackexchange question which explains the concepts and differences of different types of files</p>
+<p><a href="https://github.com/grpc/grpc/issues/2691#issuecomment-154841833">Cannot connect to SSL server using IP address</a>, this is a useful thread that helped me to solve the server certificate problem</p>
+<p><a href="https://github.com/grpc/grpc/issues/10062">TLS Golang Server not working with Node-js and Python Client</a>, this thread makes me to understand to set the server certificate to have the name that is the same as the hostname.</p>
+<p>Go to my <a href="https://github.com/LMJW/grpc_ssl">GITHUB</a> repository to see the source code implementation.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -1012,10 +1127,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.top", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>
