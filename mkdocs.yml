@@ -1,0 +1,61 @@
+site_name: lmjw
+site_description: Personal notes and blog
+site_url: https://lmjw.github.io
+repo_url: https://github.com/lmjw/lmjw.github.io
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+docs_dir: docs
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - footnotes
+  - codehilite
+
+nav:
+  - Home: index.md
+  - Blog:
+      - Overview: blog/index.md
+      - 2014-3-3 Markdown Style Guide: blog/2014-3-3-Markdown-style-guide.md
+      - 2016-03-05 My favourit softwares: blog/2016-03-05-my-favourit-softwares.md
+      - 2017-11-26 Docker, Python, Golang: blog/2017-11-26-blog-docker-python-golang.md
+      - 2017-11-28 Python subprocess: blog/2017-11-28-python-subprocess.md
+      - 2017-11-30 Install GMP on Windows 10: blog/2017-11-30-Install-GMP-on-windows10-machine.md
+      - 2017-12-06 Kubernetes: blog/2017-12-06-Kubernetes.md
+      - 2017-12-26 Docker gRPC network: blog/2017-12-26-docker-grpc-network.md
+      - 2018-01-05 OpenSSL basic concepts: blog/2018-01-05-OpenSSL-basic-concepts.md
+      - 2018-01-05 Python SSL gRPC implementation: blog/2018-01-05-python-ssl-grpc-implementation.md
+      - 2019-06-12 Intro to deep learning notes: blog/2019-06-12-Intro-to-deep-learning-notes.md
+      - 2019-11-24 Data-Oriented Design: blog/2019-11-24-Data-Oriented-Design.md
+      - 2021-05-17 Notes about learning OS dev: blog/2021-05-17-Notes-about-learning-OS-dev.md
+      - OOP Design Notes: blog/OOPDesignNotes.md
+      - Small Learning: blog/SmallLearning.md
+      - Window Key Mapping: blog/WindowKeyMapping.md
+      - Hello world: blog/hello-world.md
+      - Simple Rust protobuf gRPC guide: blog/simple-rust-protobuf-grpc-guide.md
+  - Tags: tags.md

@@ -1,32 +1,39 @@
-name: github pages
+name: Build and deploy MkDocs site
 
 on:
   push:
     branches:
-      - main  # Set a branch to deploy
-  pull_request:
+      - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          python-version: '3.x'
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-          # extended: true
+      - name: Install MkDocs and theme
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material
 
-      - name: Build
-        run: hugo --minify
+      - name: Build MkDocs site
+        run: mkdocs build --strict
+        env:
+          # Ensure mkdocs.yml in the repo root is used by default
+          # and docs/ is the content directory as configured.
+          PYTHONWARNINGS: ignore
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./site
+          publish_branch: gh-pages
