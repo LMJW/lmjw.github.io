@@ -2,78 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://lmjw.github.io/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/tags/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2014-3-3-Markdown-style-guide/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2016-03-05-my-favourit-softwares/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2017-11-26-blog-docker-python-golang/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2017-11-28-python-subprocess/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2017-11-30-Install-GMP-on-windows10-machine/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2017-12-06-Kubernetes/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2017-12-26-docker-grpc-network/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2018-01-05-OpenSSL-basic-concepts/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2018-01-05-python-ssl-grpc-implementation/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2019-06-12-Intro-to-deep-learning-notes/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2019-11-24-Data-Oriented-Design/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/2021-05-17-Notes-about-learning-OS-dev/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/OOPDesignNotes/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
+    </url>
+    <url>
+         <loc>https://lmjw.github.io/blog/PRIVACY_POLICY/</loc>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/SmallLearning/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/WindowKeyMapping/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
     <url>
          <loc>https://lmjw.github.io/blog/simple-rust-protobuf-grpc-guide/</loc>
-         <lastmod>2025-11-28</lastmod>
+         <lastmod>2025-12-25</lastmod>
     </url>
 </urlset>
